@@ -1,0 +1,19 @@
+{
+  "name": "grunt-extract-comments",
+  "version": "1.0.0",
+  "author": "Tomas Dostal",
+  "description": "Grunt task for extracting comments from file",
+  "repository": "https://github.com/DostalTomas/grunt-extract-comments.git",
+  "bundleDependencies": false,
+  "dependencies": {
+    "extract-comments": "latest"
+  },
+  "main": "tasks/extract-comments.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "tasks"
+  ]
+}

@@ -1,0 +1,17 @@
+language: node_js
+sudo: false
+
+os: linux
+
+env:
+  global:
+    - NODE_VERSION=10
+
+deploy:
+  - provider: npm
+    api_key: $NPM_TOKEN
+    skip_cleanup: true
+    email: noreply
+    on:
+      branch: master
+      tags: true
