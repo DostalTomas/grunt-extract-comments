@@ -1,7 +1,10 @@
 {
   "name": "grunt-extract-comments",
   "version": "1.0.0",
-  "author": "Tomas Dostal",
+  "author": {
+    "name": "Tomas Dostal",
+    "email": "tomik.dostik@seznam.cz"
+  },
   "description": "Grunt task for extracting comments from file",
   "repository": "https://github.com/DostalTomas/grunt-extract-comments.git",
   "bundleDependencies": false,
