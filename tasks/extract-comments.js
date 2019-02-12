@@ -4,7 +4,7 @@ module.exports = (grunt) => {
 
     const extract = require('extract-comments');
 
-    grunt.registerMultiTask('extract-comments', 'Get all comments from files and save them to separate file.', () => {
+    grunt.registerMultiTask('extract-comments', 'Get all comments from files and save them to separate file.', function() {
         this.files.forEach((file) => {
             const src = file.src.filter((filepath) => {
                 if (!grunt.file.exists(filepath)) {
