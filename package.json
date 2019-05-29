@@ -1,6 +1,6 @@
 {
   "name": "grunt-extract-comments",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Tomas Dostal",
     "email": "tomik.dostik@seznam.cz"
@@ -9,7 +9,7 @@
   "repository": "https://github.com/DostalTomas/grunt-extract-comments.git",
   "bundleDependencies": false,
   "dependencies": {
-    "extract-comments": "latest"
+    "@babel/parser": "latest"
   },
   "main": "tasks/extract-comments.js",
   "license": "MIT",
