@@ -18,33 +18,39 @@ module.exports = (grunt) => {
             src = src.map((filepath) => {
                 const content = grunt.file.read(filepath);
 
-                const commentsAst = parser.parse(content, {
-                    sourceType: 'module',
-                    plugins: [
-                        'typescript',
-                        'asyncGenerators',
-                        'bigInt',
-                        'classProperties',
-                        'classPrivateProperties',
-                        'classPrivateMethods',
-                        'decorators-legacy',
-                        'doExpressions',
-                        'dynamicImport',
-                        'exportDefaultFrom',
-                        'exportNamespaceFrom',
-                        'functionBind',
-                        'functionSent',
-                        'importMeta',
-                        'logicalAssignment',
-                        'nullishCoalescingOperator',
-                        'numericSeparator',
-                        'objectRestSpread',
-                        'optionalCatchBinding',
-                        'optionalChaining',
-                        'partialApplication',
-                        'throwExpressions'
-                    ]
-                });
+                let commentsAst;
+
+                try {
+                    commentsAst = parser.parse(content, {
+                        sourceType: 'module',
+                        plugins: [
+                            'typescript',
+                            'asyncGenerators',
+                            'bigInt',
+                            'classProperties',
+                            'classPrivateProperties',
+                            'classPrivateMethods',
+                            'decorators-legacy',
+                            'doExpressions',
+                            'dynamicImport',
+                            'exportDefaultFrom',
+                            'exportNamespaceFrom',
+                            'functionBind',
+                            'functionSent',
+                            'importMeta',
+                            'logicalAssignment',
+                            'nullishCoalescingOperator',
+                            'numericSeparator',
+                            'objectRestSpread',
+                            'optionalCatchBinding',
+                            'optionalChaining',
+                            'partialApplication',
+                            'throwExpressions'
+                        ]
+                    });
+                } catch (e) {
+                    console.error(`Error in file ${filepath}`);
+                }
 
                 return commentsAst.comments.map((c) => `/*${c.value}*/`).join('\n');
             });
