@@ -4,6 +4,36 @@ module.exports = (grunt) => {
 
     const parser = require('@babel/parser');
 
+    function parse(content) {
+        return parser.parse(content, {
+            sourceType: 'module',
+            plugins: [
+                'typescript',
+                'asyncGenerators',
+                'bigInt',
+                'classProperties',
+                'classPrivateProperties',
+                'classPrivateMethods',
+                'decorators-legacy',
+                'doExpressions',
+                'dynamicImport',
+                'exportDefaultFrom',
+                'exportNamespaceFrom',
+                'functionBind',
+                'functionSent',
+                'importMeta',
+                'logicalAssignment',
+                'nullishCoalescingOperator',
+                'numericSeparator',
+                'objectRestSpread',
+                'optionalCatchBinding',
+                'optionalChaining',
+                'partialApplication',
+                'throwExpressions'
+            ]
+        });
+    }
+
     grunt.registerMultiTask('extract-comments', 'Get all comments from files and save them to separate file.', function () {
         this.files.forEach((file) => {
             let src = file.src.filter((filepath) => {
@@ -21,35 +51,10 @@ module.exports = (grunt) => {
                 let commentsAst;
 
                 try {
-                    commentsAst = parser.parse(content, {
-                        sourceType: 'module',
-                        plugins: [
-                            'typescript',
-                            'asyncGenerators',
-                            'bigInt',
-                            'classProperties',
-                            'classPrivateProperties',
-                            'classPrivateMethods',
-                            'decorators-legacy',
-                            'doExpressions',
-                            'dynamicImport',
-                            'exportDefaultFrom',
-                            'exportNamespaceFrom',
-                            'functionBind',
-                            'functionSent',
-                            'importMeta',
-                            'logicalAssignment',
-                            'nullishCoalescingOperator',
-                            'numericSeparator',
-                            'objectRestSpread',
-                            'optionalCatchBinding',
-                            'optionalChaining',
-                            'partialApplication',
-                            'throwExpressions'
-                        ]
-                    });
+                    commentsAst = parse(content);
                 } catch (e) {
-                    console.error(`Error in file ${filepath}`);
+                    grunt.log.error(`Error in file ${filepath}`);
+                    commentsAst = parse(content);
                 }
 
                 return commentsAst.comments.map((c) => `/*${c.value}*/`).join('\n');
